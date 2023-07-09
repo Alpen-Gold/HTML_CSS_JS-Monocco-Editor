@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <!-- bootstrap link -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
+      crossorigin="anonymous"
+    />
+
+    <!-- link-css -->
+    <link rel="stylesheet" href="./css/style.css" />
+    <!-- icon -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+      integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+  </head>
+  <body>
+    <!-- menu element  -->
+
+    <div>
+      <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid">
+          <button
+            class="p-0 m-0 all-btn"
+            type="button"
+            data-bs-toggle="offcanvas"
+            data-bs-target="#offcanvasTop"
+            aria-controls="offcanvasTop"
+          >
+            My Projects
+          </button>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0 w-100">
+              <li class="nav-item ms-lg-auto" onclick="toggleFullscreen()">
+                <button class="all-btn me-3" id="screenButton">
+                  <i class="fa-solid fa-camera"></i>
+                </button>
+              </li>
+            </ul>
+            <!-- input form -->
+            <div class="d-flex gap-3">
+              <input
+                type="text"
+                id="inputNewProject"
+                class="form-control"
+                placeholder="New Project . . ."
+              />
+
+              <button
+                class="all-btn"
+                id="buttonNewProject"
+                onclick="setNewProject()"
+              >
+                <i class="fa-solid fa-plus"></i>
+              </button>
+              <!-- input form -->
+            </div>
+          </div>
+        </div>
+      </nav>
+
+      <!-- menu element -->
+      <div
+        class="offcanvas offcanvas-top h-50"
+        tabindex="-1"
+        id="offcanvasTop"
+        aria-labelledby="offcanvasTopLabel"
+      >
+        <div class="offcanvas-header">
+          <h5 class="offcanvas-title" id="offcanvasTopLabel">Offcanvas top</h5>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="offcanvas"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="offcanvas-body">
+          <div class="d-flex align-items-center justify-content-center gap-3">
+            <input
+              type="text"
+              id="inputSearchProject"
+              class="form-control"
+              placeholder="Search Project . . ."
+            />
+
+            <button class="all-btn" id="buttonSearchProject">
+              <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+          </div>
+          <ul class="list-group" id="dataProjects">
+            <!-- <li class="list-group-item">And a fifth one</li> -->
+            <!-- Element -->
+          </ul>
+        </div>
+      </div>
+    </div>
+    <!-- menu end element -->
+
+    <div id="editor-bg" class="container-fluid">
+      <div class="wrapper mt-3">
+        <div class="editor row p-0 m-0">
+          <ul
+            class="nav nav-tabs my-3 d-flex align-items-center justify-content-between"
+          >
+            <div class="d-flex">
+              <li class="nav-item">
+                <button class="nav-link active menu-code" id="html">
+                  HTML
+                </button>
+              </li>
+              <li class="nav-item">
+                <button class="nav-link active menu-code" id="css">CSS</button>
+              </li>
+              <li class="nav-item">
+                <button class="nav-link active menu-code" id="js">JS</button>
+              </li>
+              <li class="nav-item">
+                <button class="nav-link active menu-code" id="all">ALL</button>
+              </li>
+            </div>
+
+            <div class="d-flex align-items-center justify-content-center">
+              <li class="nav-item d-none" id="project-display">
+                <button class="nav-link active menu-code" id="project_name">
+                  <!-- Project name -->
+                </button>
+              </li>
+            </div>
+          </ul>
+
+          <div class="col-sm-6 col-lg-4 card-code my-3" id="HTMLcard">
+            <img src="./img/klipartz.com (2).png" id="code-img" alt="" />
+            <div id="editorCodeHTML"></div>
+          </div>
+
+          <div class="col-sm-6 col-lg-4 card-code my-3" id="CSScard">
+            <img src="./img/klipartz.com.png" id="code-img" alt="" />
+            <div id="editorCodeCSS"></div>
+          </div>
+
+          <div class="col-sm-6 col-lg-4 card-code my-3" id="JScard">
+            <img src="./img/klipartz.com (3).png" id="code-img" alt="" />
+            <div id="editorCodeJS"></div>
+          </div>
+
+          <div class="col-12" id="previewCard">
+            <iframe id="preview" class="h-100 w-100"></iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ======================================================================== -->
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+      integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"
+      integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2XofN4zfuZxLkoj1gXtW8ANNCe9d5Y3eG5eD"
+      crossorigin="anonymous"
+    ></script>
+
+    <!-- axios -->
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+    <!-- ------------------------- -->
+
+    <!-- gsap -->
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.1/gsap.min.js"
+      integrity="sha512-qF6akR/fsZAB4Co1QDDnUXWnaQseLGXoniuSuSlPQK6+aWhlMZcHzkasCSlnWoe+TJuudlka1/IQ01Dnhgq95g=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+
+    <!-- gsap js -->
+    <script src="./js/gsap.js"></script>
+
+    <!-- <script
+      type="text/javascript"
+      src="https://cdn.jsdelivr.net/npm/monaco-editor/min/vs/loader.js"
+    ></script> -->
+
+    <script src="https://requirejs.org/docs/release/2.3.6/minified/require.js"></script>
+    <script src="./js/arrayLocal.js"></script>
+    <script src="./js/monaco.js"></script>
+    <script src="./js/main.js"></script>
+  </body>
+</html>
